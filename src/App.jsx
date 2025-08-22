@@ -1,8 +1,8 @@
+import AppRoutes from "./routes/AppRoutes"
+
 const App = () => {
   return (
-    <h1 className="text-red-700">
-      Hello
-    </h1>
+    <AppRoutes />
   )
 }
 
