@@ -1,8 +1,12 @@
+
+import { UserProvider } from "./context/UserContext"
 import AppRoutes from "./routes/AppRoutes"
 
 const App = () => {
   return (
-    <AppRoutes />
+    <UserProvider>
+      <AppRoutes />
+    </UserProvider>
   )
 }
 

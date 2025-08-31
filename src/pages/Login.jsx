@@ -1,18 +1,21 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../context/UserContext.jsx";
 
-const Register = () => {
+const Login = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const { setUser } = useContext(UserContext)
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const userData = { email, password };
-        console.log("Logged in User:", userData);
+        const userData = { email };
+        setUser(userData)
 
-        // TODO: Call backend API for registration
+        // TODO: Call backend API for login (email + password)
     };
 
     return (
@@ -84,4 +87,4 @@ const Register = () => {
     );
 }
 
-export default Register
+export default Login
