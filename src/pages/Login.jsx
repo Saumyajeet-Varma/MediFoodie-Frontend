@@ -1,13 +1,87 @@
-import Layout from "../components/layout/Layout"
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-const Login = () => {
+const Register = () => {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const userData = { email, password };
+        console.log("Logged in User:", userData);
+
+        // TODO: Call backend API for registration
+    };
+
     return (
-        <Layout>
-            <div>
-                Login
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-600 to-purple-900">
+            <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
+                <h2 className="text-3xl font-bold text-center text-purple-700 mb-6">
+                    Welcome Back
+                </h2>
+                <form onSubmit={handleSubmit} className="space-y-4">
+
+                    {/* Email */}
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Email
+                        </label>
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            placeholder="Enter your email"
+                            required
+                        />
+                    </div>
+
+                    {/* Password */}
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Password
+                        </label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            placeholder="Enter password"
+                            required
+                        />
+                    </div>
+
+                    {/* TODO */}
+                    {/* Forgot Password */}
+                    {/* <div className="text-right mt-1">
+                        <Link
+                            to="/forgot-password"
+                            className="text-sm text-purple-600 hover:underline"
+                        >
+                            Forgot Password?
+                        </Link>
+                    </div> */}
+
+                    {/* Button */}
+                    <button
+                        type="submit"
+                        className="w-full bg-purple-700 text-white py-2 rounded-lg hover:bg-purple-800 transition"
+                    >
+                        Login
+                    </button>
+                </form>
+
+                <p className="mt-4 text-center text-gray-600 text-sm">
+                    Don't have an Account?{" "}
+                    <Link to="/register" className="text-purple-700 font-medium hover:underline">
+                        Create
+                    </Link>
+                </p>
             </div>
-        </Layout>
-    )
+        </div>
+    );
 }
 
-export default Login
+export default Register
