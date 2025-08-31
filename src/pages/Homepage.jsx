@@ -1,6 +1,6 @@
 import { PlayCircle, HeartPulse, Apple, Activity, Users } from "lucide-react";
-import Layout from '../components/layout/Layout'
-import PartnerMarquee from "../components/PartnerMarquee";
+import Layout from '../components/layout/Layout';
+import InfiniteMarquee from "../components/InfiniteMarquee";
 
 const Homepage = () => {
 
@@ -11,25 +11,54 @@ const Homepage = () => {
     ];
 
     const partners = [
-        { name: "Apollo Hospitals", logo: "https://upload.wikimedia.org/wikipedia/en/2/27/Apollo_Hospitals_logo.png" },
-        { name: "Fortis Healthcare", logo: "https://upload.wikimedia.org/wikipedia/en/d/d9/Fortis_Healthcare_logo.png" },
-        { name: "AIIMS", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/8/8f/AIIMS_New_Delhi_Logo.svg/1200px-AIIMS_New_Delhi_Logo.svg.png" },
+        { name: "Apollo Hospitals", logo: "https://sp.yimg.com/ib/th/id/OIP.tfeqPKZC3faF0iz2HUXFCAHaHa?pid=Api&w=148&h=148&c=7&dpr=2&rs=1" },
+        { name: "Fortis Healthcare", logo: "https://sp.yimg.com/ib/th/id/OIP.AKZlo_vVsPCv7fQytHA6KQHaHa?pid=Api&w=148&h=148&c=7&dpr=2&rs=1" },
+        { name: "AIIMS", logo: "https://sp.yimg.com/ib/th/id/OIP.r6Qpi6K5YEv9BlN9So2XKwHaHa?pid=Api&w=148&h=148&c=7&dpr=2&rs=1" },
     ];
 
     return (
         <Layout>
             <div className="font-sans">
 
-                {/* Banner */}
-                <section className="h-screen flex flex-col items-center justify-center text-center bg-gradient-to-br from-purple-700 via-purple-600 to-purple-900 text-white px-6">
-                    <h1 className="text-5xl md:text-6xl font-bold mb-4">MediFoodie</h1>
-                    <p className="text-lg md:text-2xl mb-8 max-w-2xl">
-                        Eat healthy, live better. Personalized food & healthcare solutions at your fingertips.
-                    </p>
-                    <button className="px-6 py-3 bg-white text-purple-700 font-semibold rounded-lg shadow-lg hover:bg-gray-100 transition">
-                        Get Started
-                    </button>
+                {/* Banner Section */}
+                <section className="relative h-screen flex flex-col items-center justify-center text-center px-6 bg-gradient-to-br from-purple-100 via-purple-200 to-purple-300 overflow-hidden">
+                    {/* Decorative SVG Background */}
+                    <svg
+                        className="absolute inset-0 w-full h-full opacity-20"
+                        xmlns="http://www.w3.org/2000/svg"
+                        preserveAspectRatio="none"
+                    >
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#9333ea" />
+                                <stop offset="100%" stopColor="#c084fc" />
+                            </linearGradient>
+                        </defs>
+
+                        {/* Abstract circles */}
+                        <circle cx="15%" cy="20%" r="100" fill="url(#grad1)" />
+                        <circle cx="80%" cy="10%" r="80" fill="#a855f7" opacity="0.5" />
+                        <circle cx="70%" cy="70%" r="120" fill="#9333ea" opacity="0.3" />
+                        <circle cx="20%" cy="80%" r="150" fill="#c084fc" opacity="0.4" />
+                    </svg>
+
+                    {/* Banner Content */}
+                    <div className="relative z-10 max-w-3xl">
+                        <h1 className="text-5xl md:text-6xl font-extrabold text-purple-900">
+                            Eat Healthy, Stay Strong with <span className="text-purple-600">MediFoodie</span>
+                        </h1>
+                        <p className="mt-6 text-lg md:text-xl text-purple-800">
+                            Discover personalized diet plans, healthy recipes, and trusted healthcare
+                            insights — all in one platform.
+                        </p>
+                        <div className="mt-8">
+                            <button className="px-8 py-4 bg-purple-600 text-white font-semibold text-lg rounded-2xl shadow-lg hover:bg-purple-700 transition">
+                                Get Started
+                            </button>
+                        </div>
+                    </div>
                 </section>
+
 
                 {/* Features */}
                 <section className="py-20 bg-purple-50 text-gray-800">
@@ -53,30 +82,87 @@ const Homepage = () => {
                 </section>
 
                 {/* Numbers */}
-                <section className="py-20 bg-gradient-to-r from-purple-100 to-purple-200 text-center">
-                    <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10">
-                        <div>
-                            <h2 className="text-4xl font-bold text-purple-700">50K+</h2>
-                            <p className="text-gray-600">Happy Users</p>
+                <section className="relative py-16 overflow-hidden bg-gradient-to-br from-purple-50 via-purple-100 to-purple-200">
+                    {/* Decorative SVG background (like foodie pattern) */}
+                    <svg
+                        className="absolute inset-0 w-full h-full opacity-20"
+                        xmlns="http://www.w3.org/2000/svg"
+                        preserveAspectRatio="none"
+                    >
+                        <defs>
+                            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#9333ea" />
+                                <stop offset="100%" stopColor="#c084fc" />
+                            </linearGradient>
+                        </defs>
+
+                        {/* Abstract circles */}
+                        <circle cx="10%" cy="30%" r="90" fill="url(#grad2)" />
+                        <circle cx="85%" cy="20%" r="70" fill="#a855f7" opacity="0.5" />
+                        <circle cx="70%" cy="80%" r="100" fill="#9333ea" opacity="0.25" />
+                        <circle cx="25%" cy="85%" r="120" fill="#c084fc" opacity="0.35" />
+                    </svg>
+
+                    <div className="relative max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10">
+                        <div className="flex flex-col justify-center items-center">
+                            <h2 className="text-4xl font-bold text-purple-800">50K+</h2>
+                            <p className="text-gray-700">Happy Users</p>
                         </div>
-                        <div>
-                            <h2 className="text-4xl font-bold text-purple-700">1K+</h2>
-                            <p className="text-gray-600">Healthy Recipes</p>
+                        <div className="flex flex-col justify-center items-center">
+                            <h2 className="text-4xl font-bold text-purple-800">1K+</h2>
+                            <p className="text-gray-700">Healthy Recipes</p>
                         </div>
-                        <div>
-                            <h2 className="text-4xl font-bold text-purple-700">200+</h2>
-                            <p className="text-gray-600">Partner Doctors</p>
+                        <div className="flex flex-col justify-center items-center">
+                            <h2 className="text-4xl font-bold text-purple-800">200+</h2>
+                            <p className="text-gray-700">Partner Doctors</p>
                         </div>
-                        <div>
-                            <h2 className="text-4xl font-bold text-purple-700">100+</h2>
-                            <p className="text-gray-600">Hospitals</p>
+                        <div className="flex flex-col justify-center items-center">
+                            <h2 className="text-4xl font-bold text-purple-800">100+</h2>
+                            <p className="text-gray-700">Hospitals</p>
                         </div>
                     </div>
                 </section>
 
+
                 {/* Recipe Videos */}
                 <section className="py-20 bg-purple-50">
-                    <h2 className="text-3xl font-bold text-center mb-10 text-purple-800">Healthy Recipe Videos</h2>
+                    <div className="relative z-10">
+                        <h2 className="text-3xl md:text-4xl text-center text-purple-800 font-bold mb-10">
+                            Our Healthcare Partners
+                        </h2>
+
+                        {/* Insert your InfiniteMarquee / PartnerMarquee here */}
+                        <div className="relative">
+                            <InfiniteMarquee contents={partners} speed={25} gap="3rem" />
+                        </div>
+                    </div>
+
+                </section>
+
+                {/* Partners */}
+                <section className="relative py-16 overflow-hidden bg-gradient-to-br from-purple-50 via-purple-100 to-purple-200">
+                    {/* Decorative SVG Background */}
+                    <svg
+                        className="absolute inset-0 w-full h-full opacity-20"
+                        xmlns="http://www.w3.org/2000/svg"
+                        preserveAspectRatio="none"
+                    >
+                        <defs>
+                            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#9333ea" />
+                                <stop offset="100%" stopColor="#c084fc" />
+                            </linearGradient>
+                        </defs>
+
+                        {/* Abstract circles */}
+                        <circle cx="10%" cy="30%" r="90" fill="url(#grad2)" />
+                        <circle cx="85%" cy="20%" r="70" fill="#a855f7" opacity="0.5" />
+                        <circle cx="70%" cy="80%" r="100" fill="#9333ea" opacity="0.25" />
+                        <circle cx="25%" cy="85%" r="120" fill="#c084fc" opacity="0.35" />
+                    </svg>
+
+                    {/* Content */}
+                    <h2 className="text-3xl md:text-4xl text-center text-purple-800 font-bold mb-10">Healthy Recipe Videos</h2>
                     <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
                         {recipeVideos.map(video => (
                             <div key={video.id} className="bg-white rounded-xl shadow-lg overflow-hidden">
@@ -99,19 +185,6 @@ const Homepage = () => {
                     </div>
                 </section>
 
-                {/* Partners */}
-                {/* <section className="py-20 bg-gradient-to-br from-purple-100 to-purple-50 text-center">
-                    <h2 className="text-3xl font-bold mb-10 text-purple-800">Our Healthcare Partners</h2>
-                    <div className="max-w-5xl mx-auto flex flex-wrap justify-center items-center gap-10">
-                        {partners.map((partner, idx) => (
-                            <div key={idx} className="w-40 h-20 flex items-center justify-center bg-white p-4 rounded-lg shadow-md">
-                                <img src={partner.logo} alt={partner.name} className="max-h-16 object-contain" />
-                            </div>
-                        ))}
-                    </div>
-                </section> */}
-
-                <PartnerMarquee partners={partners} speed={22} />
 
             </div>
         </Layout>
