@@ -1,8 +1,12 @@
 import { PlayCircle, HeartPulse, Apple, Activity, Users } from "lucide-react";
 import Layout from '../components/layout/Layout';
 import InfiniteMarquee from "../components/InfiniteMarquee";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 const Homepage = () => {
+
+    const { user } = useContext(UserContext)
 
     const recipeVideos = [
         { id: 1, title: "Green Smoothie for Energy", url: "https://www.youtube.com/embed/VaoV1PrYft4" },
@@ -51,11 +55,13 @@ const Homepage = () => {
                             Discover personalized diet plans, healthy recipes, and trusted healthcare
                             insights — all in one platform.
                         </p>
-                        <div className="mt-8">
-                            <button className="px-8 py-4 bg-purple-600 text-white font-semibold text-lg rounded-2xl shadow-lg hover:bg-purple-700 transition">
-                                Get Started
-                            </button>
-                        </div>
+                        {!user && <div className="mt-8">
+                            <a href="/register">
+                                <button className="px-8 py-4 bg-purple-600 text-white font-semibold text-lg rounded-2xl shadow-lg hover:bg-purple-700 transition">
+                                    Get Started
+                                </button>
+                            </a>
+                        </div>}
                     </div>
                 </section>
 

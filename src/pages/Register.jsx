@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "../config/axios.js"
+import Loader from "../components/Loader";
 
 const Register = () => {
 
@@ -7,8 +9,12 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [isLoading, setIsLoading] = useState(false)
+
+    const navigate = useNavigate()
 
     const handleSubmit = (e) => {
+
         e.preventDefault();
 
         if (password !== confirmPassword) {
@@ -16,10 +22,20 @@ const Register = () => {
             return;
         }
 
-        const userData = { name, email, password };
-        console.log("Registering User:", userData);
+        setIsLoading(true)
 
-        // TODO: Call backend API for registration
+        axios.post("/api/users/register", { name, email, password })
+            .then(res => {
+                console.log(res)
+                navigate("/verify-email")
+            })
+            .catch(err => {
+                console.log(err)
+                alert(err)
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
     };
 
     return (
@@ -92,9 +108,9 @@ const Register = () => {
                     {/* Button */}
                     <button
                         type="submit"
-                        className="w-full bg-purple-700 text-white py-2 rounded-lg hover:bg-purple-800 transition"
+                        className="w-full bg-purple-700 text-white font-semibold py-2 rounded-lg hover:bg-purple-800 transition"
                     >
-                        Register
+                        {isLoading ? <Loader size={2} thick={4} color={"white"} /> : "Register"}
                     </button>
                 </form>
 

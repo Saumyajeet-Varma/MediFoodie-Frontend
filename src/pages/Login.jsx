@@ -1,21 +1,40 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext.jsx";
+import axios from "../config/axios.js";
+import Loader from "../components/Loader.jsx";
 
 const Login = () => {
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
     const { setUser } = useContext(UserContext)
 
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [isLoading, setIsLoading] = useState(false)
+
+    const navigate = useNavigate()
+
     const handleSubmit = (e) => {
+
         e.preventDefault();
 
-        const userData = { email };
-        setUser(userData)
+        setIsLoading(true)
 
-        // TODO: Call backend API for login (email + password)
+        axios.post("/api/users/login", { email, password })
+            .then(res => {
+                const userData = res.data.user
+                setUser(userData)
+
+                navigate("/")
+            })
+            .catch(err => {
+                console.log(err)
+                alert(err)
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
+
     };
 
     return (
@@ -70,9 +89,9 @@ const Login = () => {
                     {/* Button */}
                     <button
                         type="submit"
-                        className="w-full bg-purple-700 text-white py-2 rounded-lg hover:bg-purple-800 transition"
+                        className="w-full bg-purple-700 text-white font-semibold py-2 rounded-lg hover:bg-purple-800 transition"
                     >
-                        Login
+                        {isLoading ? <Loader size={2} thick={4} color={"white"} /> : "Login"}
                     </button>
                 </form>
 
